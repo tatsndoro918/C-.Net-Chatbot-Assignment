@@ -31,9 +31,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                        CornerRadius="6" Padding="14,0">
+                                CornerRadius="6" Padding="14,0">
                             <ContentPresenter HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"/>
+                                              VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -64,11 +64,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="5">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
                             <ContentPresenter HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"/>
+                                              VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -83,9 +83,9 @@
             </Setter>
         </Style>
 
-        <!-- Exit Button (red tint) -->
+        <!-- ── Exit Button (red tint) ── -->
         <Style x:Key="ExitButtonStyle" TargetType="Button"
-       BasedOn="{StaticResource ActionButtonStyle}">
+               BasedOn="{StaticResource ActionButtonStyle}">
             <Setter Property="Foreground"  Value="#FF6B6B"/>
             <Setter Property="BorderBrush" Value="#FF6B6B"/>
         </Style>
@@ -105,12 +105,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
                         <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="6">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
                             <ScrollViewer x:Name="PART_ContentHost"
-                                      Margin="{TemplateBinding Padding}"
-                                      VerticalAlignment="Center"/>
+                                          Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -119,19 +119,248 @@
 
     </Window.Resources>
 
+    <!-- ROOT GRID — full window -->
     <Grid>
 
         <!-- BACKGROUND IMAGE (LeBron) -->
         <Image Source="/Lebron.png"
-           Stretch="UniformToFill"
-           HorizontalAlignment="Center"
-           VerticalAlignment="Center"
-           Opacity="0.99"/>
+               Stretch="UniformToFill"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Opacity="0.99"/>
 
         <!-- Dark overlay so chat stays readable -->
         <Rectangle Fill="#AA0D0D0D"/>
 
+        <!-- MAIN LAYOUT: left logo panel | right chat panel -->
         <Grid>
-        
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="290"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT COLUMN — LOGO / BRANDING PANEL -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
+                        Background="#CC000000"
+                        BorderBrush="#FFD700"
+                        BorderThickness="0,0,2,0"
+                        Padding="20,24">
+                    <StackPanel VerticalAlignment="Center">
+
+                        <!-- Jersey #23 badge -->
+                        <Border Background="#FFD700"
+                                CornerRadius="40"
+                                Width="72" Height="72"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,0,14">
+                            <TextBlock Text="23"
+                                       Foreground="#0D0D0D"
+                                       FontSize="32"
+                                       FontWeight="ExtraBold"
+                                       FontFamily="Impact"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+
+                        <!-- Title -->
+                        <TextBlock Text="BLOCKED"
+                                   Foreground="#FFD700"
+                                   FontSize="34"
+                                   FontWeight="ExtraBold"
+                                   FontFamily="Impact, Arial Black"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="BY JAMES"
+                                   Foreground="#FFD700"
+                                   FontSize="34"
+                                   FontWeight="ExtraBold"
+                                   FontFamily="Impact, Arial Black"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,6"/>
+
+                        <Rectangle Height="2" Fill="#552583" Margin="10,6,10,10"/>
+
+                        <TextBlock Text="CYBERSECURITY AWARENESS ASSISTANT"
+                                   Foreground="#AAFFD700"
+                                   FontSize="10"
+                                   FontFamily="Segoe UI"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,0,16"/>
+
+                        <Rectangle Height="1" Fill="#33FFD700" Margin="10,0,10,14"/>
+
+                        <!-- Dynamic user info -->
+                        <TextBlock x:Name="UserInfoBlock"
+                                   Text="🏀  Chatting with..."
+                                   Foreground="#99D4BFFF"
+                                   FontSize="12"
+                                   FontFamily="Segoe UI"
+                                   FontStyle="Italic"
+                                   HorizontalAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,20"/>
+
+                        <Rectangle Height="1" Fill="#33FFD700" Margin="10,0,10,14"/>
+
+                        <!-- Compact ASCII art -->
+                        <TextBlock FontFamily="Consolas"
+                                   FontSize="7"
+                                   Foreground="#66FFD700"
+                                   HorizontalAlignment="Center">
+                            <Run>______   ______ _____</Run>
+                        </TextBlock>
+                        <TextBlock FontFamily="Consolas" FontSize="7"
+                                   Foreground="#66FFD700" HorizontalAlignment="Center">
+                            <Run>/ ___\ \ / / __ )| ____|</Run>
+                        </TextBlock>
+                        <TextBlock FontFamily="Consolas" FontSize="7"
+                                   Foreground="#66FFD700" HorizontalAlignment="Center">
+                            <Run>| |    \ V /|  _ \|  _|</Run>
+                        </TextBlock>
+                        <TextBlock FontFamily="Consolas" FontSize="7"
+                                   Foreground="#66FFD700" HorizontalAlignment="Center">
+                            <Run>| |___  | | | |_) | |___</Run>
+                        </TextBlock>
+                        <TextBlock FontFamily="Consolas" FontSize="7"
+                                   Foreground="#66FFD700" HorizontalAlignment="Center">
+                            <Run> \____| |_| |____/|_____|</Run>
+                        </TextBlock>
+
+                        <Rectangle Height="1" Fill="#33FFD700" Margin="10,14,10,10"/>
+
+                        <TextBlock Text="Stay Safe. Stay Blocked. 🏀"
+                                   Foreground="#99D4BFFF"
+                                   FontSize="11"
+                                   FontFamily="Segoe UI"
+                                   FontStyle="Italic"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Status bar -->
+                <Border Grid.Row="1"
+                        Background="#EE0D0D0D"
+                        BorderBrush="#FFD700"
+                        BorderThickness="0,1,2,0"
+                        Padding="14,8">
+                    <TextBlock x:Name="StatusBar"
+                               Text="🟢  Bot ready"
+                               Foreground="#888888"
+                               FontSize="11"
+                               FontFamily="Segoe UI"/>
+                </Border>
+            </Grid>
+
+            <!-- RIGHT COLUMN — CHAT PANEL-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Top bar -->
+                    <RowDefinition Height="*"/>
+                    <!-- Chat area -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Input row -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Action buttons -->
+                </Grid.RowDefinitions>
+
+                <!-- Top bar -->
+                <Border Grid.Row="0"
+                        Background="#CC552583"
+                        Padding="16,11">
+                    <TextBlock Text="🏀  BLOCKED BY JAMES — CYBERSECURITY AWARENESS BOT"
+                               Foreground="#FFD700"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               FontFamily="Segoe UI"/>
+                </Border>
+
+                <!-- Chat display -->
+                <Border Grid.Row="1"
+                        Background="#DD141414"
+                        BorderBrush="#33FFD700"
+                        BorderThickness="0,0,0,1"
+                        Margin="0,0,0,0">
+                    <ScrollViewer x:Name="ChatScroller"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <TextBlock x:Name="ChatDisplay"
+                                   TextWrapping="Wrap"
+                                   FontFamily="Segoe UI"
+                                   FontSize="14"
+                                   Foreground="#F5F0E8"
+                                   Padding="14,12"
+                                   LineHeight="22"/>
+                    </ScrollViewer>
+                </Border>
+
+                <!-- Input row -->
+                <Border Grid.Row="2"
+                        Background="#EE0D0D0D"
+                        BorderBrush="#FFD700"
+                        BorderThickness="0,2,0,0"
+                        Padding="12,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="8"/>
+                            <ColumnDefinition Width="110"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="InputBox"
+                                 Grid.Column="0"
+                                 Height="42"
+                                 Style="{StaticResource InputStyle}"
+                                 KeyDown="InputBox_KeyDown"/>
+                        <Button x:Name="SendButton"
+                                Grid.Column="2"
+                                Content="SEND"
+                                Height="42"
+                                Style="{StaticResource SendButtonStyle}"
+                                Click="SendButton_Click"/>
+                    </Grid>
+                </Border>
+
+                <!-- Action buttons -->
+                <Border Grid.Row="3"
+                        Background="#EE0D0D0D"
+                        Padding="12,8,12,14">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="TopicsBtn"
+                                Content="Topics"
+                                Style="{StaticResource ActionButtonStyle}"
+                                Width="100"
+                                Margin="0,0,8,0"
+                                Click="TopicsBtn_Click"/>
+                        <Button x:Name="ClearBtn"
+                                Content="Clear"
+                                Style="{StaticResource ActionButtonStyle}"
+                                Width="90"
+                                Margin="0,0,8,0"
+                                Click="ClearBtn_Click"/>
+                        <Button x:Name="HelpBtn"
+                                Content="Help"
+                                Style="{StaticResource ActionButtonStyle}"
+                                Width="90"
+                                Margin="0,0,8,0"
+                                Click="HelpBtn_Click"/>
+                        <Button x:Name="ExitBtn"
+                                Content="Exit"
+                                Style="{StaticResource ExitButtonStyle}"
+                                Width="90"
+                                Click="ExitBtn_Click"/>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
