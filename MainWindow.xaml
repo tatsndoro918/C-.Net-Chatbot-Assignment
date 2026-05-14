@@ -83,13 +83,54 @@
             </Setter>
         </Style>
 
-        <!-- ── Exit Button (red tint) ── -->
+        <!-- Exit Button (red tint) -->
         <Style x:Key="ExitButtonStyle" TargetType="Button"
        BasedOn="{StaticResource ActionButtonStyle}">
             <Setter Property="Foreground"  Value="#FF6B6B"/>
             <Setter Property="BorderBrush" Value="#FF6B6B"/>
         </Style>
-        
+
+        <!-- Input TextBox -->
+        <Style x:Key="InputStyle" TargetType="TextBox">
+            <Setter Property="Background"               Value="#1E1E1E"/>
+            <Setter Property="Foreground"               Value="#F5F0E8"/>
+            <Setter Property="CaretBrush"               Value="#FFD700"/>
+            <Setter Property="BorderBrush"              Value="#FFD700"/>
+            <Setter Property="BorderThickness"          Value="1.5"/>
+            <Setter Property="FontSize"                 Value="14"/>
+            <Setter Property="FontFamily"               Value="Segoe UI"/>
+            <Setter Property="Padding"                  Value="10,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                      Margin="{TemplateBinding Padding}"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+
+        <!-- BACKGROUND IMAGE (LeBron) -->
+        <Image Source="/Lebron.png"
+           Stretch="UniformToFill"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           Opacity="0.99"/>
+
+        <!-- Dark overlay so chat stays readable -->
+        <Rectangle Fill="#AA0D0D0D"/>
+
         <Grid>
         
     </Grid>
