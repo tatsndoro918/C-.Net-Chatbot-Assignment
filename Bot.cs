@@ -126,7 +126,7 @@ namespace Cybersecurity_Awareness_Bot
         {
             SoundAction playSound = () =>
             {
-                string filePath = "C:\\Users\\user\\Desktop\\CLVD POE\\PROG Part 2\\Cybersecurity_Awareness_Bot\\Cybersecurity_Awareness_Bot\\intro.wav";
+                string filePath = "C:\\Users\\user\\Desktop\\SCHOO\\PROG Part 2 Final\\Cybersecurity_Awareness_Bot\\Cybersecurity_Awareness_Bot\\intro.wav";
                 try
                 {
                     SoundPlayer player = new SoundPlayer(filePath);
@@ -135,7 +135,7 @@ namespace Cybersecurity_Awareness_Bot
                 }
                 catch
                 {
-                    // Sound file not found — silently continue so the UI still loads
+                    
                 }
             };
             playSound();
