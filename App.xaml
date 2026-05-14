@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:Cybersecurity_Awareness_Bot"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>
