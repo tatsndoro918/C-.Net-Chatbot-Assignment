@@ -5,8 +5,92 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cybersecurity_Awareness_Bot"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Cybersecurity Awareness Bot — Blocked by James Edition"
+        Height="750" Width="1050"
+        MinHeight="650" MinWidth="900"
+        WindowStartupLocation="CenterScreen"
+        Background="#0D0D0D">
+
+    <Window.Resources>
+
+        <!-- Colour brushes -->
+        <SolidColorBrush x:Key="GoldBrush"   Color="#FFD700"/>
+        <SolidColorBrush x:Key="PurpleBrush" Color="#552583"/>
+        <SolidColorBrush x:Key="TextBrush"   Color="#F5F0E8"/>
+
+        <!--Send Button -->
+        <Style x:Key="SendButtonStyle" TargetType="Button">
+            <Setter Property="Background"      Value="#FFD700"/>
+            <Setter Property="Foreground"      Value="#0D0D0D"/>
+            <Setter Property="FontSize"        Value="14"/>
+            <Setter Property="FontWeight"      Value="Bold"/>
+            <Setter Property="FontFamily"      Value="Segoe UI"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        CornerRadius="6" Padding="14,0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC200"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#E6A800"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Action Buttons (Topics / Clear / Help) -->
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background"      Value="Transparent"/>
+            <Setter Property="Foreground"      Value="#FFD700"/>
+            <Setter Property="FontSize"        Value="13"/>
+            <Setter Property="FontWeight"      Value="SemiBold"/>
+            <Setter Property="FontFamily"      Value="Segoe UI"/>
+            <Setter Property="BorderBrush"     Value="#FFD700"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Width"           Value="90"/>
+            <Setter Property="Height"          Value="34"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#33FFD700"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#66FFD700"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ── Exit Button (red tint) ── -->
+        <Style x:Key="ExitButtonStyle" TargetType="Button"
+       BasedOn="{StaticResource ActionButtonStyle}">
+            <Setter Property="Foreground"  Value="#FF6B6B"/>
+            <Setter Property="BorderBrush" Value="#FF6B6B"/>
+        </Style>
+        
+        <Grid>
         
     </Grid>
 </Window>
