@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Media;
 
 namespace Cybersecurity_Awareness_Bot
@@ -126,12 +127,11 @@ namespace Cybersecurity_Awareness_Bot
         {
             SoundAction playSound = () =>
             {
-                string filePath = "C:\\Users\\user\\Desktop\\SCHOO\\PROG Part 2 Final\\Cybersecurity_Awareness_Bot\\Cybersecurity_Awareness_Bot\\intro.wav";
+                string filePath = Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory, "intro.wav");
                 try
                 {
                     SoundPlayer player = new SoundPlayer(filePath);
-                    player.Load();
-                    player.Play();
                 }
                 catch
                 {
@@ -165,7 +165,7 @@ namespace Cybersecurity_Awareness_Bot
             else if (message.Contains("worried") || message.Contains("scared") || message.Contains("anxious") || message.Contains("nervous") || message.Contains("afraid"))
             {
                 response = worriedResponses[rand.Next(worriedResponses.Count)];
-                // Auto-follow-up tip if topic also mentioned in same message
+                // Auto follow-up tip if topic also mentioned in same message
                 foreach (string key in topicDefinitions.Keys)
                 {
                     if (message.Contains(key))

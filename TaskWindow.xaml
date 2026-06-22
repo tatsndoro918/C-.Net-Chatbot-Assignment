@@ -1,0 +1,255 @@
+<Window x:Class="Cybersecurity_Awareness_Bot.TaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Task Assistant — Blocked by James Edition"
+        Height="720" Width="1080"
+        MinHeight="620" MinWidth="940"
+        WindowStartupLocation="CenterOwner"
+        Background="#0D0D0D">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="Gold" Color="#FFD700"/>
+        <SolidColorBrush x:Key="Purple" Color="#552583"/>
+        <SolidColorBrush x:Key="Panel" Color="#EE171717"/>
+        <SolidColorBrush x:Key="Text" Color="#F5F0E8"/>
+
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FFD700"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,9,0,5"/>
+        </Style>
+
+        <Style x:Key="FieldStyle" TargetType="Control">
+            <Setter Property="Background" Value="#242424"/>
+            <Setter Property="Foreground" Value="#F5F0E8"/>
+            <Setter Property="BorderBrush" Value="#7A6A00"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <Style x:Key="TaskButton" TargetType="Button">
+            <Setter Property="Background" Value="#242424"/>
+            <Setter Property="Foreground" Value="#FFD700"/>
+            <Setter Property="BorderBrush" Value="#FFD700"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="13,7"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#552583"/>
+            <Setter Property="Foreground" Value="#FFD700"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="BorderBrush" Value="#7B52A3"/>
+        </Style>
+
+        <Style TargetType="DataGridRow">
+            <Setter Property="Background" Value="#191919"/>
+            <Setter Property="Foreground" Value="#F5F0E8"/>
+            <Setter Property="BorderBrush" Value="#333333"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                    <Setter Property="Foreground" Value="#888888"/>
+                    <Setter Property="FontStyle" Value="Italic"/>
+                </DataTrigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#664080"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PrimaryTaskButton"
+       TargetType="Button"
+       BasedOn="{StaticResource TaskButton}">
+            <Setter Property="Background" Value="#FFD700"/>
+            <Setter Property="Foreground" Value="#111111"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#552583" Padding="20,14">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Text="🏀 TASK ASSISTANT"
+                               Foreground="#FFD700" FontSize="23"
+                               FontFamily="Impact" FontWeight="Bold"/>
+                    <TextBlock Text="Protect your accounts one completed task at a time."
+                               Foreground="#E8DFF0" FontSize="12"/>
+                </StackPanel>
+                <Border Grid.Column="1" Background="#FFD700" CornerRadius="28"
+                        Width="54" Height="54">
+                    <TextBlock Text="23" Foreground="#111111" FontFamily="Impact"
+                               FontSize="25" HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="325"/>
+                <ColumnDefinition Width="14"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="{StaticResource Panel}"
+                    BorderBrush="#FFD700" BorderThickness="1"
+                    CornerRadius="7" Padding="16">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock x:Name="EditorHeading" Text="Create a new task"
+                                   Foreground="#FFD700" FontSize="18"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="Add a clear action and an optional reminder."
+                                   Foreground="#AAAAAA" Margin="0,2,0,5"/>
+
+                        <TextBlock Text="Title *" Style="{StaticResource FieldLabel}"/>
+                        <TextBox x:Name="TitleTextBox"
+                                 Style="{StaticResource FieldStyle}"
+                                 MaxLength="150"
+                                 ToolTip="For example: Enable two-factor authentication"/>
+
+                        <TextBlock Text="Description" Style="{StaticResource FieldLabel}"/>
+                        <TextBox x:Name="DescriptionTextBox"
+                                 Style="{StaticResource FieldStyle}"
+                                 Height="105" AcceptsReturn="True"
+                                 TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                                 MaxLength="4000"
+                                 ToolTip="Explain what must be done and why it matters"/>
+
+                        <CheckBox x:Name="ReminderCheckBox"
+                                  Content="Set a reminder"
+                                  Foreground="#FFD700" FontWeight="SemiBold"
+                                  Margin="0,14,0,5"
+                                  Checked="ReminderCheckBox_Changed"
+                                  Unchecked="ReminderCheckBox_Changed"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="94"/>
+                            </Grid.ColumnDefinitions>
+                            <DatePicker x:Name="ReminderDatePicker"
+                                        Grid.Column="0" IsEnabled="False"
+                                        SelectedDateFormat="Long"/>
+                            <ComboBox x:Name="ReminderTimeComboBox"
+                                      Grid.Column="2" IsEnabled="False"
+                                      Style="{StaticResource FieldStyle}"/>
+                        </Grid>
+
+                        <TextBlock x:Name="ValidationTextBlock"
+                                   Foreground="#FF7676" TextWrapping="Wrap"
+                                   Margin="0,9,0,0"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                            <Button x:Name="SaveTaskButton" Content="Add Task"
+                                    Style="{StaticResource PrimaryTaskButton}"
+                                    Click="SaveTaskButton_Click"/>
+                            <Button Content="Clear" Style="{StaticResource TaskButton}"
+                                    Click="ClearEditorButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <Border Grid.Column="2" Background="{StaticResource Panel}"
+                    BorderBrush="#664080" BorderThickness="1"
+                    CornerRadius="7" Padding="14">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="145"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="SearchTextBox" Grid.Column="0"
+                                 Style="{StaticResource FieldStyle}"
+                                 Margin="0,0,8,0"
+                                 ToolTip="Search task titles and descriptions"
+                                 TextChanged="SearchTextBox_TextChanged"/>
+                        <ComboBox x:Name="StatusFilterComboBox" Grid.Column="1"
+                                  Style="{StaticResource FieldStyle}"
+                                  Margin="0,0,8,0"
+                                  SelectionChanged="StatusFilterComboBox_SelectionChanged">
+                            <ComboBoxItem Content="All tasks" IsSelected="True"/>
+                            <ComboBoxItem Content="Open tasks"/>
+                            <ComboBoxItem Content="Completed tasks"/>
+                        </ComboBox>
+                        <Button Grid.Column="2" Content="Refresh"
+                                Style="{StaticResource TaskButton}"
+                                Margin="0" Click="RefreshButton_Click"/>
+                    </Grid>
+
+                    <DataGrid x:Name="TaskDataGrid" Grid.Row="1"
+                              AutoGenerateColumns="False" IsReadOnly="True"
+                              SelectionMode="Single" SelectionUnit="FullRow"
+                              GridLinesVisibility="Horizontal"
+                              Background="#141414" BorderBrush="#444444"
+                              RowHeaderWidth="0"
+                              SelectionChanged="TaskDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="42"/>
+                            <DataGridTextColumn Header="Task" Binding="{Binding Title}" Width="1.5*"/>
+                            <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*"/>
+                            <DataGridTextColumn Header="Reminder" Binding="{Binding ReminderText}" Width="145"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding StatusText}" Width="85"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="2" Margin="0,11,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="TaskCountTextBlock" Grid.Column="0"
+                                   Foreground="#AAAAAA" VerticalAlignment="Center"/>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Button x:Name="CompletionButton" Content="Mark Complete"
+                                    Style="{StaticResource TaskButton}"
+                                    Click="CompletionButton_Click"/>
+                                <Button Content="Delete" Foreground="#FF8585"
+                                    BorderBrush="#FF8585"
+                                    Style="{StaticResource TaskButton}"
+                                    Margin="0" Click="DeleteButton_Click"/>
+                            </StackPanel>
+                        </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="2" Background="#111111" BorderBrush="#333333"
+                BorderThickness="0,1,0,0" Padding="16,8">
+            <Grid>
+                <TextBlock x:Name="DatabaseStatusTextBlock"
+                           Text="Connecting to MySQL..." Foreground="#AAAAAA"/>
+                <TextBlock Text="Tip: select a task to edit it"
+                           HorizontalAlignment="Right" Foreground="#777777"/>
+            </Grid>
+        </Border>
+    </Grid>
+
+</Window>
